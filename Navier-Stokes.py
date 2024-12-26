@@ -51,6 +51,8 @@ def main():
     )
     if TIME_STEP_LENGTH > STABILITY_SAFETY_FACTOR*maximum_possible_time_step_length:
         raise RuntimeError("Estabilidad no garantizada")
+    
+    plt.figure()  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     for _ in tqdm(range(N_ITERATIONS)):
         d_u_prev__d_x = central_difference_x(u_prev)
@@ -175,14 +177,22 @@ def main():
         u_prev = u_next
         v_prev = v_next
         p_prev = p_next
-    
-    plt.figure()            
-    plt.contourf(X,Y, p_next)
-    plt.colorbar()
 
-    # plt.quiver(X,Y, u_next,v_next,color="black")
-    plt.streamplot(X,Y, u_next,v_next,color="black")
+# Parte de la animacion 
+        
+        plt.cla()
+        plt.contourf(X, Y, p_next, cmap="coolwarm")
+        plt.streamplot(X, Y, u_next, v_next, color="black")
+        # plt.quiver(X, Y, u_next, v_next, color="black")
+        plt.pause(0.01)  # Pause for animation frame
     
+    # plt.figure()            
+    # plt.contourf(X,Y, p_next)
+    # plt.colorbar()
+
+    # # plt.quiver(X,Y, u_next,v_next,color="black")
+    # plt.streamplot(X,Y, u_next,v_next,color="black")
+
     plt.show()
         
 
