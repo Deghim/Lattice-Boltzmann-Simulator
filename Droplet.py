@@ -19,12 +19,12 @@ class Circle:
     def calculate_wave(self, time: float, distance: float) -> float:
         """
         Calculate wave amplitude at a given point using the wave equation
-        A(x,t) = A₀ * sin(kx - ωt) * e^(-αx)
+        A(x,t) = A₀ * sin(kx - wt) * e^(-ax)
         where:
         - A₀ is initial amplitude
         - k is wave number (2π/wavelength)
-        - ω is angular frequency
-        - α is damping coefficient
+        - w is angular frequency
+        - a is damping coefficient
         """
         wavelength = 50.0  # pixels
         k = 2 * math.pi / wavelength
@@ -35,7 +35,7 @@ class Circle:
         return wave
 
     def update(self, other_circles: List['Circle']) -> None:
-        print(self.radius)
+        # print(str(self.radius))
         current_time = pygame.time.get_ticks() / 1000.0
         elapsed_time = current_time - self.creation_time
         
